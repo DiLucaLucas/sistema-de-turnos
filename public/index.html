@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Tickets</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Sistema de Gestión de Tickets</h1>
+        <div id="current-ticket">Nuevo turno: </div>
+        <button id="next-ticket">Llamar siguiente ticket</button>
+        <div id="ticket-list">Últimos 3 tickets: </div>
+        <div id="ticket-count">Tickets atendidos hoy: </div>
+    </div>
+    <audio id="ticket-sound" src="sound.wav"></audio>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        const socket = io();
+        const currentTicketDiv = document.getElementById('current-ticket');
+        const ticketListDiv = document.getElementById('ticket-list');
+        const ticketCountDiv = document.getElementById('ticket-count');
+        const ticketSound = document.getElementById('ticket-sound');
+        document.getElementById('next-ticket').addEventListener('click', () => {
+            socket.emit('next-ticket');
+            ticketSound.play();
+        });
+
+        socket.on('current-ticket', (ticket) => {
+            currentTicketDiv.textContent = `Nuevo turno: ${ticket ? 'Turno ' + ticket.number : 'No hay tickets'}`;
+        });
+
+        socket.on('ticket-list', (tickets) => {
+            ticketListDiv.innerHTML = `Últimos 3 tickets: ${tickets.map(t => 'Turno ' + t.number).join(', ')}`;
+        });
+
+        socket.on('ticket-count', (count) => {
+            ticketCountDiv.textContent = `Tickets atendidos hoy: ${count}`;
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,59 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f0f2f5;
+}
+
+.container {
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 350px;
+}
+
+h1 {
+    font-size: 1.8em;
+    color: #333333;
+    margin-bottom: 20px;
+}
+
+#current-ticket {
+    font-size: 3em;
+    margin: 20px 0;
+    color: #007bff;
+    font-weight: bold;
+}
+
+#ticket-list {
+    margin-top: 20px;
+    font-size: 1.2em;
+    color: #555555;
+}
+
+#ticket-count {
+    margin-top: 20px;
+    font-size: 1.2em;
+    color: #888888;
+}
+
+button {
+    background: #007bff;
+    color: #ffffff;
+    border: none;
+    padding: 10px 25px;
+    font-size: 1.2em;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+    margin-top: 20px;
+}
+
+button:hover {
+    background: #0056b3;
+}
